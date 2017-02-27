@@ -10,12 +10,6 @@ import UIKit
 import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
-
-    // GLOBAL VARS
-    let baseURL: String = "https://api.twitter.com"
-    let twitterAuthorizeURL: String = "https://api.twitter.com/oauth/authorize"
-    let twitterConsumerKey: String = "yGpTFDRteUkCCxQThLGm8Alwf"
-    let twitterConsumerSecret: String = "Fhu4BOTGk2omcDS332x9LBtUM1fpqbCRZNqWFAzQizVdXTrdVV"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +23,11 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onLoginButton(_ sender: Any) {
-        let twitterClient = BDBOAuth1SessionManager.init(baseURL: URL.init(string: baseURL), consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
-        twitterClient?.deauthorize()
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL.init(string: "twitterdemoapp://auth_callback"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
+        TwitterClient.sharedInstance?.deauthorize()
+        TwitterClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL.init(string: "twitterdemoapp://auth_callback"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             print("Reveived Request Token from Twitter")
             
-            let authorizeURL = URL.init(string: self.twitterAuthorizeURL + "?oauth_token=\((requestToken?.token)!)")
+            let authorizeURL = URL.init(string: TwitterClient.twitterAuthorizeURL + "?oauth_token=\((requestToken?.token)!)")
             UIApplication.shared.open(authorizeURL!, options: [:], completionHandler: nil)
             
         }, failure: { (error: Error?) in
