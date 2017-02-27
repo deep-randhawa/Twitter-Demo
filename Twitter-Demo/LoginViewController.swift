@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginButton(_ sender: Any) {
         let twitterClient = BDBOAuth1SessionManager.init(baseURL: URL.init(string: baseURL), consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
         twitterClient?.deauthorize()
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: nil, scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
+        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL.init(string: "twitterdemoapp://auth_callback"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             print("Reveived Request Token from Twitter")
             
             let authorizeURL = URL.init(string: self.twitterAuthorizeURL + "?oauth_token=\((requestToken?.token)!)")
