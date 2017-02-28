@@ -15,6 +15,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     // GLOBAL VARS
     var tweets: [Tweet] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +46,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    @IBAction func onLogoutButtonClick(_ sender: Any) {
+        TwitterClient.sharedInstance?.logout()
+    }
 
     /*
     // MARK: - Navigation
