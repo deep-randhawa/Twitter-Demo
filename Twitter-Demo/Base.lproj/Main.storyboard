@@ -114,6 +114,12 @@
                                                         <constraint firstAttribute="width" constant="30" id="KDK-nL-Wb6"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBG-8q-uKy">
+                                                    <rect key="frame" x="295" y="8" width="72" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.38224579019999999" green="0.38224579019999999" blue="0.38224579019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NiL-NQ-qfr" firstAttribute="leading" secondItem="tZr-Cr-409" secondAttribute="leading" id="3hB-zl-cTo"/>
@@ -128,16 +134,19 @@
                                                 <constraint firstItem="NiL-NQ-qfr" firstAttribute="top" secondItem="tZr-Cr-409" secondAttribute="bottom" constant="8" id="Rm9-2h-DLd"/>
                                                 <constraint firstItem="tZr-Cr-409" firstAttribute="leading" secondItem="0YZ-ty-wH7" secondAttribute="trailing" constant="8" id="Uxg-28-E0b"/>
                                                 <constraint firstItem="tg4-rq-vGH" firstAttribute="top" secondItem="zkM-BV-JnG" secondAttribute="top" constant="8" id="VEs-VT-Vmp"/>
+                                                <constraint firstItem="rBG-8q-uKy" firstAttribute="top" secondItem="zkM-BV-JnG" secondAttribute="top" constant="8" id="Xe7-Fz-vrh"/>
                                                 <constraint firstItem="9N6-JU-ryj" firstAttribute="leading" secondItem="tg4-rq-vGH" secondAttribute="trailing" constant="8" id="ceC-Kr-Yh3"/>
                                                 <constraint firstItem="9N6-JU-ryj" firstAttribute="top" secondItem="zkM-BV-JnG" secondAttribute="top" constant="8" id="d7K-wU-HDE"/>
                                                 <constraint firstAttribute="bottom" secondItem="NiL-NQ-qfr" secondAttribute="bottom" constant="11" id="gqe-xj-Ja5"/>
                                                 <constraint firstItem="uJ1-df-XIX" firstAttribute="baseline" secondItem="lha-an-JTg" secondAttribute="baseline" id="uQr-63-hxb"/>
                                                 <constraint firstItem="tZr-Cr-409" firstAttribute="top" secondItem="tg4-rq-vGH" secondAttribute="bottom" constant="5" id="uZ2-6v-fra"/>
+                                                <constraint firstAttribute="trailing" secondItem="rBG-8q-uKy" secondAttribute="trailing" constant="8" id="yRH-2U-bVy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="displayLabel" destination="9N6-JU-ryj" id="TsP-Sy-vZb"/>
                                             <outlet property="profileImageView" destination="0YZ-ty-wH7" id="sXm-gL-mEz"/>
+                                            <outlet property="timestampLabel" destination="rBG-8q-uKy" id="i5j-Jm-3tx"/>
                                             <outlet property="tweetTextLabel" destination="tZr-Cr-409" id="xQa-7d-nZb"/>
                                             <outlet property="usernameLabel" destination="tg4-rq-vGH" id="KTP-YM-St0"/>
                                         </connections>

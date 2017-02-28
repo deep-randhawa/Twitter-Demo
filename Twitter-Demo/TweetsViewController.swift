@@ -51,6 +51,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.usernameLabel.text = thisTweet.user?.name
         cell.displayLabel.text = "@\((thisTweet.user?.screenName)!)"
         cell.tweetTextLabel.text = thisTweet.text
+        
+        cell.timestampLabel.text = "\(Int((thisTweet.createdAt?.timeIntervalSinceNow.rounded())! * -1 / 60)) min"
+        
         return cell
     }
     
