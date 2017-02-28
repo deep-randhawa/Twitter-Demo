@@ -12,7 +12,7 @@ class User: NSObject {
 
     var name: String?
     var screenName: String?
-    var profileURL: URL?
+    var profileImageURL: URL?
     var tagLine: String?
     private var originalDictionary: Dictionary<String, Any>?
     
@@ -51,7 +51,7 @@ class User: NSObject {
         self.name = dictionary["name"] as? String
         self.screenName = dictionary["screen_name"] as? String
         if let profileURLString = dictionary["profile_image_url_https"] as? String {
-            self.profileURL = URL.init(string: profileURLString)
+            self.profileImageURL = URL.init(string: profileURLString)
         }
         self.tagLine = dictionary["description"] as? String
     }
