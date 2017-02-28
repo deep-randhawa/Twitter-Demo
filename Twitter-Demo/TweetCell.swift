@@ -20,9 +20,18 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    var thisTweet: Tweet?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        if (thisTweet?.favorited ?? false) {
+            favoriteButton.setImage(UIImage.init(named: "favor-icon-red"), for: .normal)
+        }
+        if (thisTweet?.retweeted ?? false) {
+            retweetButton.setImage(UIImage.init(named: "retweet-icon-green"), for: .normal)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,6 +42,27 @@ class TweetCell: UITableViewCell {
         
         tweetTextLabel.preferredMaxLayoutWidth = tweetTextLabel.frame.size.width
         // Configure the view for the selected state
+    }
+    
+    
+    @IBAction func onFavoriteButtonClicked(_ sender: Any) {
+        if (thisTweet?.favorited ?? false) {
+            thisTweet?.favorited = false
+            favoriteButton.setImage(UIImage.init(named: "favor-icon"), for: .normal)
+        } else {
+            thisTweet?.favorited = true
+            favoriteButton.setImage(UIImage.init(named: "favor-icon-red"), for: .normal)
+        }
+    }
+    
+    @IBAction func onRetweetButtonClicked(_ sender: Any) {
+        if (thisTweet?.retweeted ?? false) {
+            thisTweet?.retweeted = false
+            retweetButton.setImage(UIImage.init(named: "retweet-icon"), for: .normal)
+        } else {
+            thisTweet?.retweeted = true
+            retweetButton.setImage(UIImage.init(named: "retweet-icon-green"), for: .normal)
+        }
     }
 
 }

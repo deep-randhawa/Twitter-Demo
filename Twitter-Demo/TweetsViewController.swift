@@ -47,6 +47,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         let thisTweet = tweets[indexPath.row]
+        cell.thisTweet = thisTweet
         cell.profileImageView.setImageWith((thisTweet.user?.profileImageURL)!)
         cell.usernameLabel.text = thisTweet.user?.name
         cell.displayLabel.text = "@\((thisTweet.user?.screenName)!)"

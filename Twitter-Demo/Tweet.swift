@@ -15,11 +15,25 @@ class Tweet: NSObject {
     var createdAt: Date?
     var retweetCount: Int
     var favoriteCount: Int
+    var favorited: Bool
+    var retweeted: Bool
     
     init(dictionary: Dictionary<String, Any>) {
         
         if let userDictionary = dictionary["user"] as? NSDictionary {
             self.user = User.init(dictionary: userDictionary as! Dictionary<String, Any>)
+        }
+        
+        if ((dictionary["retweeted"] as? String) == "false") {
+            self.retweeted = false
+        } else {
+            self.retweeted = true
+        }
+        
+        if ((dictionary["favorited"] as? String) == "false") {
+            self.favorited = false
+        } else {
+            self.favorited = true
         }
         
         self.text = dictionary["text"] as? String
