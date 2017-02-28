@@ -48,6 +48,34 @@ class Tweet: NSObject {
         }
     }
     
+    func unfavorite() {
+        if (favorited) {
+            favorited = false
+            favoriteCount -= 1
+        }
+    }
+    
+    func favorite() {
+        if (!favorited) {
+            favorited = true
+            favoriteCount += 1
+        }
+    }
+    
+    func unretweet() {
+        if (retweeted) {
+            retweeted = false
+            retweetCount -= 1
+        }
+    }
+    
+    func retweet() {
+        if (!retweeted) {
+            retweeted = true
+            retweetCount += 1
+        }
+    }
+    
     class func tweetsFromArray(dictionaries: [Dictionary<String, Any>]) -> [Tweet] {
         var tweets = [Tweet]()
         

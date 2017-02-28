@@ -47,20 +47,20 @@ class TweetCell: UITableViewCell {
     
     @IBAction func onFavoriteButtonClicked(_ sender: Any) {
         if (thisTweet?.favorited ?? false) {
-            thisTweet?.favorited = false
+            thisTweet?.unfavorite()
             favoriteButton.setImage(UIImage.init(named: "favor-icon"), for: .normal)
         } else {
-            thisTweet?.favorited = true
+            thisTweet?.favorite()
             favoriteButton.setImage(UIImage.init(named: "favor-icon-red"), for: .normal)
         }
     }
     
     @IBAction func onRetweetButtonClicked(_ sender: Any) {
         if (thisTweet?.retweeted ?? false) {
-            thisTweet?.retweeted = false
+            thisTweet?.unretweet()
             retweetButton.setImage(UIImage.init(named: "retweet-icon"), for: .normal)
         } else {
-            thisTweet?.retweeted = true
+            thisTweet?.retweet()
             retweetButton.setImage(UIImage.init(named: "retweet-icon-green"), for: .normal)
         }
     }

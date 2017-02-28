@@ -177,6 +177,7 @@
                                 <action selector="onLogoutButtonClick:" destination="VFG-hY-tp9" id="AZN-SV-1d3"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="nBd-rZ-5lF"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="sJH-PW-Xaw" id="7AB-sP-aq3"/>
