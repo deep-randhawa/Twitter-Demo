@@ -18,6 +18,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
     
     // GLOBAL VARS
     var tweet: Tweet?
@@ -27,11 +29,17 @@ class TweetDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        
         photoImageView.setImageWith((tweet?.user?.profileImageURL)!, placeholderImage: nil)
         usernameLabel.text = tweet?.user?.name
         displayNameLabel.text = "@\((tweet?.user?.screenName)!)"
         tweetTextLabel.text = tweet?.text
-        timestampLabel.text = "\(Int((tweet?.createdAt?.timeIntervalSinceNow.rounded())! * -1 / 60)) min"
+        timestampLabel.text = formatter.string(from: (tweet?.createdAt)!)
+        retweetCountLabel.text = "\((tweet?.retweetCount)!) RETWEETS"
+        favoriteCountLabel.text = "\((tweet?.favoriteCount)!) FAVORITES"
     }
 
     override func didReceiveMemoryWarning() {
