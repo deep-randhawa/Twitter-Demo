@@ -15,6 +15,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var displayNameLabel: UILabel!
+    @IBOutlet weak var tweetContainerView: UIView!
+    @IBOutlet weak var tweetCountLabel: UILabel!
+    @IBOutlet weak var followingContainerView: UIView!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followerContainerView: UIView!
+    @IBOutlet weak var followersCountLabel: UILabel!
     
     
     // GLOBAL VARS
@@ -32,6 +38,19 @@ class ProfileViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = 5
         profileImageView.clipsToBounds = true
+        
+        tweetCountLabel.text = "\((user?.retweetCount)!)"
+        followingCountLabel.text = "\((user?.friendsCount)!)"
+        followersCountLabel.text = "\((user?.followersCount)!)"
+        
+        tweetContainerView.layer.borderWidth = 0.5
+        tweetContainerView.layer.borderColor = UIColor.gray.cgColor
+        
+        followingContainerView.layer.borderWidth = 0.5
+        followingContainerView.layer.borderColor = UIColor.gray.cgColor
+        
+        followerContainerView.layer.borderWidth = 0.5
+        followerContainerView.layer.borderColor = UIColor.gray.cgColor
     }
 
     override func didReceiveMemoryWarning() {

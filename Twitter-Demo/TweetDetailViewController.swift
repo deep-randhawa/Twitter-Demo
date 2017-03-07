@@ -52,6 +52,11 @@ class TweetDetailViewController: UIViewController {
     func userTappedProfileImage() {
         performSegue(withIdentifier: "TweetDetailVCToProfileVCSegue", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationController = segue.destination as! ProfileViewController
+        destinationController.user = tweet?.user
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
