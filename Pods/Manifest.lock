@@ -16,15 +16,18 @@ PODS:
     - AFNetworking/NSURLSession
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
+  - Whisper (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - Whisper
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
+  Whisper: 08be92623311f8e53201e62e17f6d7b9599a4714
 
-PODFILE CHECKSUM: 8e2b22c78b5d52ff87f512a7e1c3101ac71fd518
+PODFILE CHECKSUM: 8d9ea1b4414a2a141e4d64bacf85af742f6ff99e
 
 COCOAPODS: 1.2.0

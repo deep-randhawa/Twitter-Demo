@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Whisper
 
 class NewTweetViewController: UIViewController {
     
@@ -38,9 +39,13 @@ class NewTweetViewController: UIViewController {
         // TODO: submit statuses to Twitter through TwitterClient
         let statusParamter: [String: String] = ["status": tweetTextView.text]
         TwitterClient.sharedInstance?.statusUpdate(success: { (user: User) in
-            print("successfully added new tweet")
+            print("Successfully added new Tweet")
+            
+            Whisper.show(whistle: Murmur.init(title: "Successfully added tweet"), action: .show(1.5))
+            self.navigationController?.popViewController(animated: true)
         }, failure: { (error: Error) in
             print(error.localizedDescription)
+            Whisper.show(whistle: Murmur.init(title: "Error occured"), action: .show(1.5))
         }, json: statusParamter)
         
     }

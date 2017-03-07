@@ -8,6 +8,7 @@ target 'Twitter-Demo' do
   # Pods for Twitter-Demo
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
+  pod 'Whisper'
 
 
   target 'Twitter-DemoTests' do
