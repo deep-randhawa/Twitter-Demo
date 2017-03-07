@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol TweetTableViewCellDelegate: class {
+    func profileImageViewTapped(cell: TweetCell, user: User)
+}
+
 class TweetCell: UITableViewCell {
     
     // OUTLETS
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView! {
+        didSet {
+            self.profileImageView.isUserInteractionEnabled = true
+            let userTappedProfileImage = UITapGestureRecognizer.init(target: self, action: #selector(userTappedProfile(_:)))
+            self.profileImageView.addGestureRecognizer(userTappedProfileImage)
+        }
+    }
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
@@ -20,7 +30,15 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    // GLOBAL VARS
     var thisTweet: Tweet?
+    weak var tweetTableViewCellDelegate: TweetTableViewCellDelegate?
+    
+    func userTappedProfile(_ gesture: UITapGestureRecognizer) {
+        if let delegate = tweetTableViewCellDelegate {
+            delegate.profileImageViewTapped(cell: self, user: (self.thisTweet?.user)!)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

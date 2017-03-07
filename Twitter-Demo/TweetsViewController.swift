@@ -9,6 +9,16 @@
 import UIKit
 import AFNetworking
 
+extension TweetsViewController: TweetTableViewCellDelegate {
+    func profileImageViewTapped(cell: TweetCell, user: User) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+}
+
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // OUTLETS
@@ -54,24 +64,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.tweetTextLabel.text = thisTweet.text
         
         cell.timestampLabel.text = "\(Int((thisTweet.createdAt?.timeIntervalSinceNow.rounded())! * -1 / 60)) min"
-
-        let userTapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(userTappedProfileImage(sender:)))
-        cell.profileImageView.isUserInteractionEnabled = true
-        cell.profileImageView.addGestureRecognizer(userTapGestureRecognizer)
+        
+        cell.tweetTableViewCellDelegate = self
         
         return cell
-    }
-    
-    func userTappedProfileImage(sender: UITapGestureRecognizer) {
-        if let imageView = sender.view as? UIImageView {
-            if let cell = imageView.superview?.superview as? TweetCell {
-                let mainStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
-                if let profileVC = mainStoryBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
-                    profileVC.user = cell.thisTweet?.user
-                    self.present(profileVC, animated: true, completion: nil)
-                }
-            }
-        }
     }
     
     @IBAction func onLogoutButtonClick(_ sender: Any) {
