@@ -54,27 +54,32 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.tweetTextLabel.text = thisTweet.text
         
         cell.timestampLabel.text = "\(Int((thisTweet.createdAt?.timeIntervalSinceNow.rounded())! * -1 / 60)) min"
-        
-        let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TweetsViewController.userTappedProfileImage))
-        cell.profileImageView.addGestureRecognizer(tapGestureRecognizer)
-        cell.profileImageView.isUserInteractionEnabled = true
 
+        let userTapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(userTappedProfileImage(sender:)))
+        cell.profileImageView.isUserInteractionEnabled = true
+        cell.profileImageView.addGestureRecognizer(userTapGestureRecognizer)
+        
         return cell
     }
     
-    func userTappedProfileImage() {
-        performSegue(withIdentifier: "TweetsVCToProfileVCSegue", sender: self)
+    func userTappedProfileImage(sender: UITapGestureRecognizer) {
+        if let imageView = sender.view as? UIImageView {
+            if let cell = imageView.superview?.superview as? TweetCell {
+                let mainStoryBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                if let profileVC = mainStoryBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+                    profileVC.user = cell.thisTweet?.user
+                    self.present(profileVC, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @IBAction func onLogoutButtonClick(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
-        case "TweetsVCToProfileVCSegue":
-            // Send user information to ProfileViewController
-            print("going to profile view controller")
         case "TweetsVCToTweetDetailVCSegue":
             let senderCell = sender as! UITableViewCell
             let indexPath = tweetsTableView.indexPath(for: senderCell)

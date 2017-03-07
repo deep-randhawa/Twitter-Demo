@@ -44,6 +44,9 @@ class TweetDetailViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TweetDetailViewController.userTappedProfileImage))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
+        
+        photoImageView.layer.cornerRadius = 5
+        photoImageView.clipsToBounds = true
     }
     
     func userTappedProfileImage() {

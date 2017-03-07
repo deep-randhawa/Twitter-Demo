@@ -26,15 +26,15 @@ The following **additional** features are implemented:
 - [x] Dynamic change of icons when you retweet or favorite a tweet
 - [ ] List anything else that you can get done to improve the app functionality!
 
-# Project 5 - *Name of App Here*
+# Project 5 - *Twitter-Demo*
 
-Time spent: **X** hours spent in total
+Time spent: **5** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 - [ ] Profile page:
    - [ ] Contains the user header view
    - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
