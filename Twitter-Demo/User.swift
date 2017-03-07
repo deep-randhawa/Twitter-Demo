@@ -10,10 +10,15 @@ import UIKit
 
 class User: NSObject {
 
-    var name: String?
-    var screenName: String?
-    var profileImageURL: URL?
-    var tagLine: String?
+    var name: String?                       // name
+    var screenName: String?                 // screen_name
+    var profileImageURL: URL?               // profile_image_url_https
+    var profileBackgroundImageURL: URL?     // profile_background_image_url_https
+    var followersCount: Int?                // followers_count
+    var retweetCount: Int?                  // listed_count
+    var favoritesCount: Int?                // favourites_count
+    var friendsCount: Int?                  // friends_count
+    var tagLine: String?                    // description
     private var originalDictionary: Dictionary<String, Any>?
     
     static let userLoggedOutNotification: String = "UserLoggedOut"
@@ -53,6 +58,13 @@ class User: NSObject {
         if let profileURLString = dictionary["profile_image_url_https"] as? String {
             self.profileImageURL = URL.init(string: profileURLString)
         }
+        if let profileBackgroundURLString = dictionary["profile_background_image_url_https"] as? String {
+            self.profileBackgroundImageURL = URL.init(string: profileBackgroundURLString)
+        }
+        self.followersCount = dictionary["followers_count"] as? Int
+        self.retweetCount = dictionary["listed_count"] as? Int
+        self.favoritesCount = dictionary["favourites_count"] as? Int
+        self.friendsCount = dictionary["friends_count"] as? Int
         self.tagLine = dictionary["description"] as? String
     }
     
