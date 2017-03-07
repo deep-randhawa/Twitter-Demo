@@ -14,6 +14,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     // API ENDPOINTS
     static let homeTimelineEndpoint: String = "1.1/statuses/home_timeline.json"
     static let verifyCredentialsEndpoint: String = "1.1/account/verify_credentials.json"
+    static let newUpdateEndpoint: String = "1.1/statuses/update.json"
     
     // GLOBAL VARS
     static let baseUrl: String = "https://api.twitter.com"
@@ -60,6 +61,14 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         
         NotificationCenter.default.post(name: NSNotification.Name.init(User.userLoggedOutNotification), object: nil)
+    }
+    
+    func statusUpdate(success: @escaping (User) -> (), failure: @escaping (Error) -> (), json parameters: Dictionary<String, Any>) {
+        post(TwitterClient.newUpdateEndpoint, parameters: parameters, progress: nil, success: { (URLSessionDataTask, response: Any?) in
+            success(User.currentUser!)
+        }) { (URLSessionDataTask, error: Error) in
+            failure(error)
+        }
     }
     
     func createAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
