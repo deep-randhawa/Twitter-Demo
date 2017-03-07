@@ -55,7 +55,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.timestampLabel.text = "\(Int((thisTweet.createdAt?.timeIntervalSinceNow.rounded())! * -1 / 60)) min"
         
+        let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TweetsViewController.userTappedProfileImage))
+        cell.profileImageView.addGestureRecognizer(tapGestureRecognizer)
+        cell.profileImageView.isUserInteractionEnabled = true
+
         return cell
+    }
+    
+    func userTappedProfileImage() {
+        performSegue(withIdentifier: "TweetsVCToProfileVCSegue", sender: self)
     }
     
     @IBAction func onLogoutButtonClick(_ sender: Any) {
@@ -63,12 +71,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let senderCell = sender as! UITableViewCell
-        let indexPath = tweetsTableView.indexPath(for: senderCell)
-        let tweet = tweets[(indexPath?.row)!]
-        
-        let detailViewController = segue.destination as! TweetDetailViewController
-        detailViewController.tweet = tweet
+        switch segue.identifier! {
+        case "TweetsVCToProfileVCSegue":
+            // Send user information to ProfileViewController
+            print("going to profile view controller")
+        case "TweetsVCToTweetDetailVCSegue":
+            let senderCell = sender as! UITableViewCell
+            let indexPath = tweetsTableView.indexPath(for: senderCell)
+            let tweet = tweets[(indexPath?.row)!]
+            
+            let detailViewController = segue.destination as! TweetDetailViewController
+            detailViewController.tweet = tweet
+        default:
+            print("Segue could NOT be identified")
+        }
     }
     
     /*

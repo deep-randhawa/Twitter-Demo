@@ -40,6 +40,14 @@ class TweetDetailViewController: UIViewController {
         timestampLabel.text = formatter.string(from: (tweet?.createdAt)!)
         retweetCountLabel.text = "\((tweet?.retweetCount)!) RETWEETS"
         favoriteCountLabel.text = "\((tweet?.favoriteCount)!) FAVORITES"
+        
+        let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TweetDetailViewController.userTappedProfileImage))
+        photoImageView.addGestureRecognizer(tapGestureRecognizer)
+        photoImageView.isUserInteractionEnabled = true
+    }
+    
+    func userTappedProfileImage() {
+        performSegue(withIdentifier: "TweetDetailVCToProfileVCSegue", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
